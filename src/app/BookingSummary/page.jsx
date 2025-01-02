@@ -1,19 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 
 const BookingSummary = () => {
-  const [isClient, setIsClient] = useState(false);
   const searchParams = useSearchParams();
   const restaurant = searchParams.get("restaurant");
 
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -29,9 +24,9 @@ const BookingSummary = () => {
         }
       } catch (error) {
         console.error("Error fetching bookings:", error);
-        setBookings([]);
+        setBookings([]); // Set empty bookings in case of error
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after fetching data
       }
     };
 
@@ -39,10 +34,6 @@ const BookingSummary = () => {
       fetchBookings();
     }
   }, [restaurant]);
-
-  if (!isClient) {
-    return null;
-  }
 
   return (
     <div className="p-6 space-y-6">
@@ -81,4 +72,11 @@ const BookingSummary = () => {
   );
 };
 
-export default BookingSummary;
+// Dynamic import with Suspense to handle client-side navigation
+export default function BookingSummaryPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookingSummary />
+    </Suspense>
+  );
+}
