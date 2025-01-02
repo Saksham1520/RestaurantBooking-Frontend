@@ -18,7 +18,7 @@ const BookingSummary = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:8080/api/getAllBookings/?restaurant=${restaurantParam}`
+          `https://restaurant-booking-backend-wheat.vercel.app/api/getAllBookings/?restaurant=${restaurantParam}`
         );
         if (res.data.success) {
           setBookings(res.data.bookings);

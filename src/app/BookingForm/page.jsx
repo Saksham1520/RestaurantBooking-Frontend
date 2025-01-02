@@ -40,7 +40,7 @@ const BookingFormContent = () => {
         restaurant,
       };
       const res = await axios.post(
-        "http://localhost:8080/api/createbooking",
+        "https://restaurant-booking-backend-wheat.vercel.app/api/createbooking",
         payload,
         {
           headers: {

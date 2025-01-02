@@ -31,7 +31,7 @@ const BookingCalendar = ({ onSlotSelect }) => {
       try {
         const date = format(selectedDate, "yyyy-MM-dd", { locale: enUS });
         const res = await axios.get(
-          `http://localhost:8080/api/getbookingbydate/${date}?restaurant=${restaurant}`
+          `https://restaurant-booking-backend-wheat.vercel.app/api/getbookingbydate/${date}?restaurant=${restaurant}`
         );
 
         if (res.data.success) {
