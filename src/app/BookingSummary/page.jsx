@@ -62,6 +62,8 @@ const BookingSummary = () => {
                 <th className="py-2 px-4 text-left">Customer Name</th>
                 <th className="py-2 px-4 text-left">Contact</th>
                 <th className="py-2 px-4 text-left">Total Guests</th>
+                <th className="py-2 px-4 text-left">Date</th>
+                <th className="py-2 px-4 text-left">Time</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +72,8 @@ const BookingSummary = () => {
                   <td className="py-2 px-4 text-gray-700">{booking.name}</td>
                   <td className="py-2 px-4 text-gray-700">{booking.contact}</td>
                   <td className="py-2 px-4 text-gray-700">{booking.guests}</td>
+                  <td className="py-2 px-4 text-gray-700">{booking.date}</td>
+                  <td className="py-2 px-4 text-gray-700">{booking.time}</td>
                 </tr>
               ))}
             </tbody>
