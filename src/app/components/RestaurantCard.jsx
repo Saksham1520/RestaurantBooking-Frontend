@@ -20,7 +20,7 @@ export default function RestaurantCard({ restItem }) {
           <Link
             href={{
               pathname: "/BookingForm",
-              query: { restaurant: restItem.name }, // Pass restaurant name as query parameter
+              query: { restaurant: restItem.name },
             }}
           >
             <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
@@ -29,8 +29,8 @@ export default function RestaurantCard({ restItem }) {
           </Link>
           <Link
             href={{
-              pathname: "/BookingSummary", // Go to the BookingSummary page
-              query: { restaurant: restItem.name }, // Pass restaurant name as query parameter
+              pathname: "/BookingSummary",
+              query: { restaurant: restItem.name },
             }}
           >
             <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">

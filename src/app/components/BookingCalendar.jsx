@@ -43,11 +43,11 @@ const BookingCalendar = ({ onSlotSelect }) => {
           );
           setAvailableSlots(available);
         } else {
-          setAvailableSlots(timeSlots); // Default to all slots if no bookings
+          setAvailableSlots(timeSlots);
         }
       } catch (error) {
         console.error("Error fetching bookings:", error);
-        setAvailableSlots(timeSlots); // Default to all slots if error
+        setAvailableSlots(timeSlots);
       }
     };
 

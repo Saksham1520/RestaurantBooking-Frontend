@@ -4,11 +4,16 @@ import axios from "axios";
 import { useSearchParams } from "next/navigation";
 
 const BookingSummary = () => {
+  const [isClient, setIsClient] = useState(false);
   const searchParams = useSearchParams();
   const restaurant = searchParams.get("restaurant");
 
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -24,9 +29,9 @@ const BookingSummary = () => {
         }
       } catch (error) {
         console.error("Error fetching bookings:", error);
-        setBookings([]); // Set empty bookings in case of error
+        setBookings([]);
       } finally {
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false);
       }
     };
 
@@ -35,13 +40,16 @@ const BookingSummary = () => {
     }
   }, [restaurant]);
 
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="p-6 space-y-6">
       <h2 className="text-2xl font-semibold text-gray-800">Booking Summary</h2>
 
       {loading ? (
         <div className="flex justify-center items-center space-x-2">
-          {/* Spinner */}
           <div className="w-8 h-8 border-4 border-t-blue-500 border-gray-300 rounded-full animate-spin"></div>
           <span>Loading...</span>
         </div>
