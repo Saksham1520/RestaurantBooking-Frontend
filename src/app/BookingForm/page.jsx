@@ -5,6 +5,7 @@ import BookingCalendar from "../components/BookingCalendar";
 import { useSearchParams } from "next/navigation";
 
 const BookingFormContent = () => {
+  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const restaurant = searchParams.get("restaurant");
 
@@ -33,6 +34,7 @@ const BookingFormContent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const payload = {
         ...formData,
         date: selectedDate.toISOString().split("T")[0],
@@ -54,6 +56,8 @@ const BookingFormContent = () => {
     } catch (error) {
       console.error("Error creating booking:", error);
       alert(error.response?.data.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -125,7 +129,7 @@ const BookingFormContent = () => {
           type="submit"
           className="w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          Confirm Booking
+          {loading ? <p>Loading...</p> : <p>Confirm Booking</p>}
         </button>
       </form>
     </div>
